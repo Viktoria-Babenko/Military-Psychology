@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<meta charset="UTF-8" />
+<title>Військова Психологія • Реклама</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --brand: #111;
+    --accent: #ffd54f;
+    --accent-dark: #f0c53c;
+    --primary: #4c96af;
+    --primary-dark: #38878e;
+    --danger: #F44336;
+    --bg: #ffffff;
+    --muted: #666;
+    --card: #fafafa;
+    --line: #eee;
+
+    /* новые цвета для кнопок */
+    --btn-blue: #1e88e5;
+    --btn-green: #43a047;
+    --btn-yellow: #fbc02d;
+    --btn-beige: #f2e1c2;
+    --btn-text-dark: #1e1e1e;
+  }
+
+  * {
+    box-sizing: border-box
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--bg);
+    color: #111;
+  }
+
+  header {
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 5
+  }
+
+  h1 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    line-height: 1.25
+  }
+
+  .sub {
+    color: var(--muted);
+    font-size: 14px
+  }
+
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px
+  }
+
+  .bar button {
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #000;
+    cursor: pointer;
+    font-weight: 600
+  }
+
+  .bar button:hover {
+    background: var(--primary-dark)
+  }
+
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 18px 16px 60px
+  }
+
+  section {
+    display: none;
+    background: var(--card);
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin: 14px 0
+  }
+
+  section.active {
+    display: block
+  }
+
+  h2 {
+    margin-top: 0;
+    font-size: 20px
+  }
+
+  .grid {
+    display: grid;
+    gap: 12px
+  }
+
+  @media(min-width:860px) {
+    .grid.cols-2 {
+      grid-template-columns: 1fr 1fr
+    }
+  }
+
+  ul {
+    margin: 8px 0 0 18px
+  }
+
+  .note {
+    background: #FFF3CD;
+    border: 1px solid #FFE082;
+    padding: 12px;
+    border-radius: 10px
+  }
+
+  .price {
+    background: #fff;
+    border: 1px dashed var(--accent);
+    padding: 12px;
+    border-radius: 10px
+  }
+
+  .pill {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: .3px
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--danger);
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 700
+  }
+
+  .btn:hover {
+    filter: brightness(.95)
+  }
+
+  .q {
+    margin: 10px 0 6px;
+    font-weight: 700
+  }
+
+  textarea,
+  input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font: inherit;
+    background: #fff
+  }
+
+  .inline {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap
+  }
+
+  .chip {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    cursor: pointer;
+    background: #fff
+  }
+
+  .chip.active {
+    border-color: #111;
+    box-shadow: 0 0 0 2px #1111
+  }
+
+  .muted {
+    color: var(--muted);
+    font-size: 13px
+  }
+
+  .hr {
+    height: 1px;
+    background: var(--line);
+    margin: 12px 0
+  }
+
+  .section-footer {
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  .btn-next {
+    display: inline-block;
+    padding: 10px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: #1e88e5;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, 0.15s ease;
+  }
+
+  .btn-next:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    background: #1565c0;
+  }
+
+  .btn-next:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+  }
+
+  /* базовый стиль для любых кнопок */
+  button {
+    border-radius: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: left;
+    box-shadow: 1px 1px 0px #1e1e1e;
+    border: none;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 0px #1e1e1e;
+  }
+
+  button:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 0px #1e1e1e;
+  }
+
+  /* 🔹 КНОПКИ ПО ЦВЕТАМ */
+  .btn-blue {
+    background: #8EC5D8 !important;
+    color: #fff;
+  }
+
+  .btn-green {
+    background: #88C99F !important;
+    color: #fff;
+  }
+
+  .btn-yellow {
+    background: #f5e8a3 !important;
+    color: #444;
+    font-weight: 700;
+  }
+
+  .btn-beige {
+    background: #E7D9C4 !important;
+    color: #444;
+    font-weight: 700;
+  }
+
+
+  /* можно комбинировать с .btn, если нужно больше "продажного" стиля */
+  .btn.btn-blue {
+    background: var(--btn-blue);
+  }
+
+  .btn.btn-green {
+    background: var(--btn-green);
+  }
+
+  .btn.btn-yellow {
+    background: var(--btn-yellow);
+    color: var(--btn-text-dark);
+  }
+
+  .btn.btn-beige {
+    background: var(--btn-beige);
+    color: var(--btn-text-dark);
+  }
+
+  .price-block {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+
+  .price-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .price-column {
+    flex: 1 1 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tariff-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px 18px;
+    background: #ffffff;
+  }
+
+  .tariff-title {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .tariff-subtitle {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    opacity: 0.9;
+  }
+
+  .tariff-courses {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .price-full {
+    font-size: 14px;
+    font-weight: 600;
+    color: #d60000;
+    margin-bottom: 4px;
+  }
+
+  .price-sale {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #ffe76a;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .benefits {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    background: #f7f7f7;
+    padding: 8px 10px;
+    border-radius: 8px;
+    line-height: 1.4;
+  }
+</style>
+<header>
+  <h1>Дзвінок клієнту з реклами</h1>
+  <div class="bar">
+    <button class="btn-blue" onclick="show('hello')">👋 Привітання</button>
+    <button class="btn-blue" onclick="show('needs')">🔎 Виявлення потреб</button>
+    <button class="btn-blue" onclick="show('compliment')">Комплімент</button>
+    <button class="btn-blue" onclick="show('presentation')">Про нашу школу</button>
+    <button class="btn-green" onclick="show('pres1')">Для себе</button>
+    <button class="btn-green" onclick="show('pres2')">Для роботы з 0</button>
+    <button class="btn-green" onclick="show('pres3')">Для роботи з досвідом</button>
+    <button class="btn-blue" onclick="show('format')">Формат навчання </button>
+    <button class="btn-yellow" onclick="show('price')"> Ціна </button>
+    <button class="btn-blue" onclick="show('dokument')"> Документи </button>
+    <button class="btn-blue" onclick="show('cta')">👉 Способи оплати</button>
+    <button class="btn-beige" onclick="show('objection')">❗️«Це дорого»</button>
+    <button class="btn-beige" onclick="show('objection2')">❗️«Не на часі»</button>
+    <button class="btn-beige" onclick="show('objection3')">❗️«Подумаю»</button>
+    <button class="btn-blue" onclick="show('cta-short')"> Заклик до дії </button>
+    <button class="btn-blue" onclick="show('present')"> Подарунок </button>
+    <button class="btn-yellow" onclick="show('scripts-women')"> Кейси для жінок </button>
+    <button class="btn-yellow" onclick="show('scripts-men')"> Кейси для чоловіків </button>
+  </div>
+</header>
+<main class="wrap">
+    <!-- Привітання -->
+    <section id="hello" class="section active">
+    <h2>👋 Привітання</h2>
+    <p> Добрий день, <em>[ім’я] </em>🙂</p>
+    <p>Мене звати <em>[ваше ім’я]</em>, школа Expert.</p>
+    <p>Ви залишали заявку щодо навчання за напрямом військової психології. Вірно ?</p>
+    <p><em>Після відповіді клієнта:</em></p>
+    <p><em>[ім’я] </em> дякую за інтерес до вивчення військової психології. Підкажіть зараз зручно кілька хвилин поговорити?</p>
+    <p>Пропоную зробити так:</p>
+    <ul style="list-style: none; padding-left: 0;">
+      <li>я задам кілька уточнень,</li>
+      <li>підберу програму саме під вашу ціль,</li>
+      <li>розкажу різницю між програмами, спеціальні ціни та подарунки які ми даруємо своїм студентам</li>
+    </ul>
+    <p>Підійде такий формат, цікаво?</p>
+    <p> Чудово, тоді почнемо 🤝</p>
+    <div class="section-footer">
+      <button class="btn-next" onclick="show('needs')">Далі</button>
+    </div>
+  </section>
+  <!-- Виявлення потреб -->
+   <section id="needs" class="section">
+    <h2>🔎 Виявлення потреб</h2>
+    <p>✔️ Поставте клієнту 2 ключові запитання 3(додатковий) та уважно фіксуйте відповіді:</p>
+
+    <p><strong>1.</strong> Розкажіть, будь ласка, про свій досвід у сфері психології?</p>
+    <p><strong>2.</strong> Розкажіть, будь ласка, як ви плануєте використовувати нові знання?</p>
+    <p><strong>3.</strong> Що для вас особливо важливо в навчанні? (Додатковий для закритого клієнта)</p>
+
+    <div class="note">
+      🔸 Важливо фіксувати: цілі, болі, очікування, мотивацію — щоб зробити точну презентацію та коректно внести в CRM.
+    </div>
+
+    <p><em>(Менеджер записує відповіді клієнта у CRM без змін змісту)</em></p>
+    <div class="section-footer">
+      <button class="btn-next" onclick="show('compliment')">Далі</button>
+    </div>
+  </section>
+  <!-- Комплімент -->
+  <section id="compliment" class="section">
+  <h2>💬 Комплімент</h2>
+
+  <div class="tip">
+    🎯 <em>Комплімент робимо, спираючись на інформацію та досягнення, які надав клієнт</em>
+  </div>
+  <p><strong>Менеджер:</strong></p>
+  <div style="display: flex; flex-direction: column; gap: 6px; ">
+
+    <button onclick="openText('p1')">⭐ Варіант 1 (універсальний, живий)</button>
+    <p id="p1" style="display:none;">«Дякую, що поділились. Те, що ви розглядаєте саме військову психологію — це дуже сильний вибір. Це напрям, який зараз дійсно потрібен людям.»</p>
+
+    <button onclick="openText('p2')">⭐ Варіант 2 (якщо хоче допомагати)</button>
+    <p id="p2" style="display:none;">«Це дуже цінно, що ви хочете допомагати людям, особливо в такому напрямі. Не кожен готовий працювати з такими темами — а у вас є внутрішня готовність і мотивація.»</p>
+
+    <button onclick="openText('p3')">⭐ Варіант 3 (новачок)</button>
+    <p id="p3" style="display:none;">«Дуже круто, що ви хочете зайти в цю сферу з нуля. Саме в військовій психології зараз багато можливостей для старту і розвитку.»</p>
+
+    <button onclick="openText('p4')">⭐ Варіант 4 (є досвід)</button>
+    <p id="p4" style="display:none;">«У вас уже є база, і це відчувається. Якщо додати сюди військову психологію — це може стати дуже сильною спеціалізацією.»</p>
+
+    <button onclick="openText('p5')">⭐ Варіант 5 (короткий)</button>
+    <p id="p5" style="display:none;">«Дякую вам за відкритість. По вашому запиту видно, що ви серйозно підходите до цього напрямку.»</p>
+
+  </div>
+
+  <div class="section-footer">
+    <button class="btn-next" onclick="show('presentation')">Далі</button>
+  </div>
+</section>
+<!-- Про нашу школу -->
+  <section id="presentation" class="section">
+    <p>
+      Щоб ви краще розуміли, розповім про нас. Ми — школа Expert.<br>
+      Працюємо вже 11 років, нас обрали понад 70 000 студентів. <br>
+      Ми єдині в Україні, хто одразу дає трирівневу міжнародну сертифікацію з дипломом Mini MBA<br>
+      Наш фокус — практика та результат. (навіть якщо ви починаєте з нуля)
+    </p>
+    <p>
+      Виходячи з вашого запиту та цілей, я рекомендую вам розглянути <strong>два варіанти програм</strong>, які будуть
+      максимально корисні для вас:
+    </p>
+
+    <p>
+      👉 <em>Далі менеджер презентує кожну програму окремо з урахуванням відповідей клієнта</em>
+    </p>
+    <div class="section-footer">
+      <button class="btn-green" onclick="show('pres1')">Для себе</button>
+      <button class="btn-green" onclick="show('pres2')">Для професії з 0</button>
+      <button class="btn-green" onclick="show('pres3')">Для професії з досвідом</button>
+    </div>
+  </section>
+<!-- Для себе -->
+ <section id="presentation-newbie-self" class="section">
+
+  <h2>🧠 Для себе </h2>
+
+  <p><strong>[ім’я]</strong>, якщо ви розглядаєте цей напрям саме для себе — це дуже правильний крок 🙌</p>
+
+  <p>Тому що військова психологія зараз допомагає не тільки іншим, а й дуже сильно стабілізує власний стан.</p><br>
+
+
+  <p>🔹 Перша програма ⭐️ Базовий комплекс — це легкий і комфортний старт</p>
+
+  <p>Ви тут без перевантаження розберетесь:</p>
+  <p>
+  — як працює психіка в стресі  
+  <br>— як справлятись з тривогою і панічними станами  
+  <br>— як підтримувати себе і близьких  
+  <br>— як відновлюватись після сильних переживань
+  </p>
+
+  <p>Це більше про розуміння, спокій і внутрішню опору.</p><br>
+
+
+  <p>🔹 Друга програма ⭐️ VIP — це вже більш глибокий рівень</p>
+
+  <p>Тут ви не просто розумієте, а починаєте реально пропрацьовувати:</p>
+  <p>
+  — свої реакції та тригери  
+  <br>— емоційні стани  
+  <br>— глибші психологічні процеси  
+  <br>— роботу з травматичним досвідом
+  </p>
+
+  <p>І головне — ви не самі:</p>
+  <p>
+  ✔ підтримка куратора  
+  <br>✔ пояснення складних моментів  
+  <br>✔ допомога, якщо щось незрозуміло  
+  <br>✔ структура, яка веде вас по кроках
+  </p>
+
+  <p>Тобто це вже формат, де ви отримуєте не просто знання, а реальні зміни в собі.</p><br>
+
+
+  <p>Погодьтесь, <strong>[ім’я]</strong>, коли є підтримка і розуміння що робити — результат зовсім інший, правда ж?</p>
+
+  <p><strong>[ім’я]</strong>, підкажіть, будь ласка, що вам зараз ближче:  
+  👉 спокійно розібратись для себе  
+  чи  
+  👉 глибше пропрацювати себе з підтримкою?</p>
+
+
+  <div class="section-footer">
+    <button class="btn-next" onclick="show('format')">Далі</button>
+  </div>
+
+</section>
+ <!-- Для роботы з 0 -->
+  <section id="pres1" class="section">
+    <h2>🧠 Для роботы з 0 </h2>
+  <p>Більшість наших студентів починали без досвіду і поступово виходили в практику.</p><br>
+
+
+  <p>🔹 Перша програма ⭐️ STANDARD — це якраз формат, з якого правильно почати для роботи</p>
+
+  <p>Тут ви по кроках розбираєтесь:</p>
+  <p>
+  — як працює психіка після бойових дій  
+  <br>— як працювати з тривожними станами і панічними атаками  
+  <br>— як взаємодіяти з військовими та їх родинами  
+  <br>— як будувати перші консультації
+  </p>
+
+  <p>Також ви освоюєте інструменти:</p>
+  <p>
+  — КПТ (когнітивно-поведінкова терапія)  
+  <br>— тілесно-орієнтовану терапію  
+  <br>— базову роботу з психотравмами
+  </p>
+
+  <p>І важливо — є практика:</p>
+  <p>
+  ✔ відпрацювання навичок  
+  <br>✔ зворотній зв’язок  
+  <br>✔ Zoom-сесії з експертом
+  </p>
+
+  <p>Тобто це формат, де ви поступово приходите до розуміння як працювати з клієнтами 👍</p><br>
+
+
+  <p>🔹 Друга програма ⭐️ VIP — це вже рівень, де ви формуєте конкретні навички для роботи</p>
+
+<p>Після навчання ви вмієте:</p>
+<p>
+— працювати з психотравмами та наслідками бойових дій  
+<br>— стабілізувати клієнта в кризових станах  
+<br>— проводити консультації з військовими та їх родинами  
+<br>— працювати з панічними атаками та тривожними розладами  
+<br>— застосовувати КПТ у роботі  
+<br>— розуміти тілесні реакції та працювати через них  
+<br>— вибудовувати структуру консультації від запиту до результату
+</p>
+
+<p>Також ви отримуєте практичний досвід:</p>
+<p>
+✔ розбір реальних кейсів  
+<br>✔ відпрацювання навичок  
+<br>✔ підготовка до перших клієнтів  
+</p>
+
+<p>І найважливіше — ви не просто знаєте теорію, а розумієте, як застосовувати її в реальній роботі.</p><br>
+
+  <p>Погодьтесь, <strong>[ім’я]</strong>, коли є підтримка і чітка система — почати набагато легше, правда ж?</p>
+
+  <p><strong>[ім’я]</strong>, підкажіть, будь ласка, вам зараз ближче:  
+  👉 спокійно зайти в професію і розібратись по кроках  
+  чи  
+  👉 одразу йти в формат з повним супроводом і швидшим результатом?</p>
+
+  <div class="section-footer">
+    <button class="btn-next" onclick="show('format')">Далі</button>
+  </div>
+
+</section>
+  <!-- Для роботи з досвідом -->
+   <section id="pres1" class="section">
+
+  <p><strong>[ім’я]</strong>, дивіться, якщо говоримо саме про роботу і розвиток — тут є 2 рівні 👇</p>
+
+
+  <p>🔹 Перша програма ⭐️ STANDARD — це професійна база, яка підсилює ваші поточні навички</p>
+
+  <p>Тут ви прокачуєте:</p>
+  <p>
+  — роботу з психотравмами та наслідками бойових дій  
+  <br>— ведення клієнтів з панічними станами і тривогою  
+  <br>— роботу з військовими та їх родинами  
+  <br>— застосування КПТ у практиці  
+  <br>— тілесно-орієнтовані підходи  
+  </p>
+
+  <p>Також важливо — є практика:</p>
+  <p>
+  ✔ відпрацювання навичок  
+  <br>✔ зворотній зв’язок  
+  <br>✔ Zoom-сесії з військовим психологом  
+  </p>
+
+  <p>Це формат, який систематизує ваші знання і дає впевненість у роботі.</p><br>
+
+
+  <p>🔹 Друга програма ⭐️ VIP — це вже рівень глибокої практики і переходу на новий рівень як спеціаліста</p>
+
+  <p>Тут ви формуєте навички:</p>
+  <p>
+  — глибока робота з ПТСР і складними травмами  
+  <br>— ведення складних клієнтів (військові, ветерани, сім’ї)  
+  <br>— стабілізація клієнта в кризових станах  
+  <br>— побудова повного процесу роботи з клієнтом  
+  <br>— робота з психосоматикою та емоційними реакціями  
+  </p>
+
+  <p>І що дає результат:</p>
+  <p>
+  ✔ супервізія і розбір ваших кейсів  
+  <br>✔ корекція роботи і помилок  
+  <br>✔ розширення інструментів  
+  <br>✔ супровід 12 місяців  
+  </p>
+
+  <p>Тобто ви не просто вчитесь — ви реально виходите на інший рівень практики і доходу.</p><br>
+
+
+  <p>Погодьтесь, <strong>[ім’я]</strong>, коли є практика, супровід і розбір ваших кейсів — це зовсім інший рівень спеціаліста, правда ж?</p>
+
+  <p><strong>[ім’я]</strong>, підкажіть, будь ласка, вам зараз ближче:  
+  👉 підсилити свої навички і систематизувати знання  
+  чи  
+  👉 вийти на новий рівень з повним супроводом і практикою?</p>
+
+
+  <div class="section-footer">
+    <button class="btn-next" onclick="show('format')">Далі</button>
+  </div>
+
+</section>
+
+   <!-- Формат навчання -->
+    <section id="format" class="section">
+    <p>І ще хочу коротко розповісти вам про наш формат навчання — це те, що вигідно відрізняє нас від інших шкіл.</p>
+
+    <p>🔥Зручний формат навчання</p>
+
+    <p> Ми — єдині, хто створив повноцінний мобільний додаток який можна безкоштовно скачати на телефон або планшет , а
+      також на компьютері<br>
+      У ньому ви знайдете:</p>
+
+    <p>– відеолекції<br>
+      – методичні матеріали <br>
+      – іспити у тестовому форматі</p>
+
+    <p> Найкрутіше те, що всі відео можна дивитися в коли немає світла та інтернету<br>
+      Це дуже актуально зараз, це те чого немає на інших школах, і хочу наголосити що доступ у вас залишаеться назавжди,
+      ви навчаетесь в своему темпі і навідь через рік або два зможете переглянути матеріал. </p>
+
+    <div class="section-footer">
+      <button class="btn-yellow" onclick="show('price-block1')">Ціна для себе </button>
+      <button class="btn-yellow" onclick="show('price-block2')">Ціна для професіїї з 0 </button>
+      <button class="btn-yellow" onclick="show('price-block3')">Ціна для професіїї з досвідом </button>
+
+    </div>
+  </section>
+  <!-- Ціна -->
+   <section id="price" class="section">
+
+  <h2>💰 Вартість та формати навчання</h2>
+
+  <p><strong>[ім’я]</strong>, давайте я швидко зорієнтую вас по вартості та варіантах, щоб підібрати найзручніший формат саме під вашу ціль 👇</p><br>
+
+
+  <p><strong>Перша програма — БАЗОВИЙ комплекс</strong></p>
+
+  <p>що складається з 4 ключових курсів по військовій психології.</p>
+
+  <p>Ви опануєте базу:</p>
+  <p>
+  — як працює психіка в умовах стресу  
+  <br>— як підтримувати військових та близьких  
+  <br>— як працювати з тривожними станами  
+  <br>— як проходить адаптація після бойових дій  
+  </p>
+
+  <p>Після навчання ви вже розумієте, як допомогти собі та оточенню.</p>
+
+  <p>Після кожного курсу ви отримуєте сертифікати українською та англійською мовами.</p>
+
+  <p><strong>Зараз діє спеціальна пропозиція — 5550 грн</strong> замість <strong> 5 850 грн</strong></p>
+
+  <p>Матеріал подається просто і зрозуміло, без складної термінології — щоб ви одразу могли застосовувати знання в житті.</p><br>
+
+
+  <p><strong>Другий варіант — STANDARD (професійний рівень)</strong></p>
+
+  <p>Сюди входить база + більш глибокі напрямки:</p>
+
+  <p>
+  — робота з психотравмами  
+  <br>— КПТ (когнітивно-поведінкова терапія)  
+  <br>— психосоматика  
+  <br>— робота з військовими та їх родинами  
+  <br>— практика та Zoom-заняття  
+  </p>
+
+  <p>Це вже рівень, де ви починаєте працювати з запитами і формуєте навички консультації.</p>
+
+  <p>Після завершення ви отримуєте:</p>
+  <p>
+  ✔ диплом школи  
+  <br>✔ міжнародний диплом Mini MBA  
+  </p>
+
+  <p><strong>Зараз вартість — 18 400 грн</strong> замість <strong> 29 000 грн</strong></p>
+
+  <p>Це той формат, де ви не просто навчаєтесь, а вже починаєте відпрацьовувати навички.</p><br>
+
+
+  <p><strong>VIP — максимальний професійний рівень</strong></p>
+
+  <p>Найпопулярніший формат — більшість студентів обирають саме його.</p>
+
+  <p>Його головна перевага — це поєднання навчання + практики + супроводу.</p>
+
+  <p>Ви отримуєте:</p>
+  <p>
+  — 21+ курс (повне навчання)  
+  <br>— глибоку роботу з ПТСР і психотравмами  
+  <br>— роботу з реальними кейсами  
+  <br>— супервізію і розбір ситуацій  
+  <br>— допомогу у веденні перших клієнтів  
+  </p>
+
+  <p>І головне — підтримку:</p>
+  <p>
+  ✔ куратор 12 місяців  
+  <br>✔ перевірка домашніх завдань  
+  <br>✔ відповіді на всі питання  
+  <br>✔ допомога у старті практики  
+  </p>
+
+
+  <p><strong>Вартість — 36 500 грн</strong> замість <strong> 42 000 грн</strong></p>
+
+  <p><strong>Цей рівень — найглибший і найпрактичніший.</strong></p>
+
+<p>Він підійде тим, хто хоче не лише розібратися у військовій психології, а й застосовувати ці знання на практиці:</p>
+
+
+
+  <p><strong>[ім’я]</strong>, підкажіть, будь ласка, вам зараз ближче:  
+  👉 комфортно зайти в тему і розібратись  
+  чи  
+  👉 одразу обрати формат з практикою і результатом?</p>
+
+
+  <div class="section-footer">
+    <button class="btn-next" onclick="show('dokument')">Далі</button>
+  </div>
+
+</section>
+   <!-- Документи -->
+    <section id="dokument" class="section">
+
+    <p>У кінці навчання ви отримуєте повноцінну папку документів, а не один папірець.</p>
+
+    <p>1️⃣ Диплом міжнародного зразка ISO</p>
+
+    <p>З маркируванням якості ISO, який відповідає європейським та міжнародним стандартам.</p>
+
+    <p>2️⃣ Сертифікат підвищення кваліфікації від КНЕУ</p>
+
+    <p>3️⃣ Диплом Mini MBA , HISTES, Czech University (произносится: <strong>Mini MBA, Хистэс, Чек Юнивёрсити</strong>)
+    </p>
+
+    <p>Наша гордість.<br>
+      Ми отримали міжнародну акредитацію HISTES, і тому видаємо додатковий диплом Mini MBA, який визнають у більш ніж 90
+      країнах світу.</p>
+
+    <p>Тобто ви отримуєте і зручність у навчанні, і реальні міжнародні документи — не лише для себе, а й для роботи в
+      Україні чи за кордоном.</p>
+    <p><strong>Питання до клієнта:</strong><br>
+      👉 Що вам більше відгукується: просто базовий формат чи варіант, де є супервізія й вас фактично ведуть до
+      результату?
+    </p>
+    <div class="section-footer">
+      <button class="btn-next" onclick="show('cta')">Далі </button>
+    </div>
+  </section>
+    <!-- Способи оплати -->
+     <section id="cta" class="section">
+    <p style="margin: 0 0 12px 0;">
+      <strong>Ця спеціальна пропозиція діє 24 годин, тому щоб зафіксувати всі умови, пропоную перейти до вибору способу
+        оплати.</strong>
+    </p>
+
+    <p style="margin: 0 0 10px 0;">У нас є два комфортні варіанти:</p>
+
+    <div style="margin-left: 10px;">
+      <p style="margin: 0 0 8px 0;">
+        <strong>1️⃣ Повна оплата за реквізитами школи</strong> — після оплати я одразу відкриваю доступ до навчання.
+      </p>
+
+      <p style="margin: 0 0 8px 0;">
+        <strong>2️⃣ Оплата частинами через банк</strong> — без комісії та переплат, усі комісії бере на себе школа, а
+        доступ до навчання також відкривається одразу після підтвердження першої оплати.
+      </p>
+    </div>
+
+    <p style="margin-top: 16px; font-weight: 600;">
+      Який формат оплати буде зручніший для вас?
+    </p>
+    <div class="section-footer">
+      <button class="btn-next" onclick="show('payment-installments')">Оплата частинами - це</button>
+      <button class="btn-next" onclick="show('cta-short')">Далі</button>
+      <button class="btn-next" onclick="show('objection')">«Це дорого»</button>
+      <button class="btn-next" onclick="show('objection2')">«Не на часі»</button>
+      <button class="btn-next" onclick="show('objection3')">«Подумаю»</button>
+    </div>
+  </section>
+  <!-- Оплата частинами -->
+  <section id="payment-installments" class="section">
+    <p>
+      <strong>Ім’я</strong>, погоджуюсь, це справді дуже зручно, враховуючи те, що немає жодних комісій та переплат.<br>
+      Оплата частинами — це послуга від банку.
+    </p>
+
+    <p>
+      Ми співпрацюємо з провідними українськими банками, які надають цю послугу:<br>
+      <strong>ПриватБанк, monobank та ПУМБ</strong>.
+    </p>
+    <p class="lead">Оплата частинами працює дуже просто:</p>
+
+    <div class="steps">
+      <p>🔹 Я оформлю для вас оплату через ПриватБанк, monobank або сервіс Pump.</p>
+      <p>🔹 На ваш мобільний застосунок банку прийде повідомлення / push-запит.</p>
+      <p>🔹 Вам потрібно лише підтвердити операцію в додатку.</p>
+      <p>🔹 Після оплати, будь ласка, надішліть мені скрін оплати або фото чеку — і я одразу відкрию вам доступ до
+        навчання.</p>
+    </div>
+    <div class="section-footer">
+      <button class="btn-next" onclick="show('cta-short')">Далі</button>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  function show(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function toggleChip(el) {
+    el.classList.toggle('active');
+  }
+  function openText(id) {
+    document.querySelectorAll("p").forEach(p => p.style.display = "none");
+    document.getElementById(id).style.display = "block";
+  }
+</script>
+
+</body>
+
+</html>
